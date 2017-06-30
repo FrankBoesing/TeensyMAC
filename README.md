@@ -8,11 +8,13 @@ Example:
 ```
 #include <TeensyMAC.h>
 
-void setup() { 
-  delay(1000); 
-  Serial.printf("Serial: %u\n",teensySerial());
-  Serial.printf("MAC: 0x%012llX\n", teensyMAC());
+void setup() {
+  Serial.begin(9600);
 }
 
-void loop() {}
+void loop() {
+  delay(500);
+  Serial.printf("Serial: %u\n", teensySerial());
+  Serial.printf("MAC: 0x%012llX\n", teensyMAC());
+}
 ```
