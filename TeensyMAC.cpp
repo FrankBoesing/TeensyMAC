@@ -61,10 +61,12 @@ extern "C" void startup_early_hook(void) {
  *(uint32_t*)(MY_SYSREGISTERFILE) = _getserialhw();
 }
 
-uint32_t teensySerial(void) { 
+uint32_t teensySerial(void) {
 	uint32_t num;
 	num = *(uint32_t*)(MY_SYSREGISTERFILE);
-	if (num < 10000000) num = num * 10;		
+	// add extra zero to work around OS-X CDC-ACM driver bug
+	// http://forum.pjrc.com/threads/25482-Duplicate-usb-modem-number-HELP
+	if (num < 10000000) num = num * 10;
 	return num;
 }
 uint64_t teensyMAC(void) {
@@ -73,17 +75,16 @@ uint64_t teensyMAC(void) {
 
 #else
 
-	uint32_t teensySerial(void) { 
-	uint32_t num;	
+	uint32_t teensySerial(void) {
+	uint32_t num;
 	num = _getserialhw();
-	if (num < 10000000) num = num * 10;	
-	return num; 
+	// add extra zero to work around OS-X CDC-ACM driver bug
+	// http://forum.pjrc.com/threads/25482-Duplicate-usb-modem-number-HELP
+	if (num < 10000000) num = num * 10;
+	return num;
 }
 uint64_t teensyMAC(void) {
 	return 0x04E9E5000000ULL | _getserialhw();
 }
 
-#endif 
-
-
-
+#endif
