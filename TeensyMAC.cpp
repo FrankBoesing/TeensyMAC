@@ -88,3 +88,13 @@ uint64_t teensyMAC(void) {
 }
 
 #endif
+
+void teensyMACArray(uint8_t *macArray) {
+	uint64_t mac = teensyMAC();
+	macArray[0] = (uint8_t)((mac >> 40) & 0xFF);
+	macArray[1] = (uint8_t)((mac >> 32) & 0xFF);
+	macArray[2] = (uint8_t)((mac >> 24) & 0XFF);
+	macArray[3] = (uint8_t)((mac >> 16) & 0XFF);
+	macArray[4] = (uint8_t)((mac >> 8) & 0XFF);
+	macArray[5] = (uint8_t)(mac & 0XFF);
+}
