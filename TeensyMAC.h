@@ -28,5 +28,5 @@
 #include <stdint.h>
 uint32_t teensySerial(void);
 uint64_t teensyMAC(void);
-void teensyMACArray(uint8_t *macArray);
+void teensyMAC(uint8_t *macArray);
 #endif

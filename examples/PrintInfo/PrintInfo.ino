@@ -11,7 +11,7 @@ void loop() {
 
   Serial.print("MAC as array: ");
   uint8_t mac[6];
-  teensyMACArray(mac);
+  teensyMAC(mac);
   for (uint8_t i = 0; i < 6; ++i) {
     Serial.printf("%02X", mac[i]);
     if (i < 5) {
